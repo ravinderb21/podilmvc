@@ -1,12 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Podil";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Podil</h1>
+        <p class="lead text-muted">Share your life moments with Family and Friends. Register and start uploading your photos.</p>
+        <p>
+            @Html.ActionLink("Sign up today", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-lg btn-primary my-2" })
+            <a href="#" class="btn btn-lg btn-info my-2">Learn More</a>
+        </p>
+    </div>
+</section>
 
 <div class="row">
     <div class="col-md-4">
