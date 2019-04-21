@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using podil.Models;
+using podil.ViewModels.Manage;
 
 namespace podil.Controllers
 {
