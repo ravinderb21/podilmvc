@@ -179,6 +179,10 @@
     <Compile Include="Migrations\201904211705294_AddingFirstMigration.Designer.cs">
       <DependentUpon>201904211705294_AddingFirstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904211940246_SeedingUsersAndAdministratorRole.cs" />
+    <Compile Include="Migrations\201904211940246_SeedingUsersAndAdministratorRole.Designer.cs">
+      <DependentUpon>201904211940246_SeedingUsersAndAdministratorRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -294,6 +298,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904211705294_AddingFirstMigration.resx">
       <DependentUpon>201904211705294_AddingFirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904211940246_SeedingUsersAndAdministratorRole.resx">
+      <DependentUpon>201904211940246_SeedingUsersAndAdministratorRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
