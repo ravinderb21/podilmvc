@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,7 +184,13 @@
     <Compile Include="Migrations\201904211940246_SeedingUsersAndAdministratorRole.Designer.cs">
       <DependentUpon>201904211940246_SeedingUsersAndAdministratorRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904212121105_AddPhotoAndCategoryModels.cs" />
+    <Compile Include="Migrations\201904212121105_AddPhotoAndCategoryModels.Designer.cs">
+      <DependentUpon>201904212121105_AddPhotoAndCategoryModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CategoryType.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -301,6 +308,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Photos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904211940246_SeedingUsersAndAdministratorRole.resx">
       <DependentUpon>201904211940246_SeedingUsersAndAdministratorRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904212121105_AddPhotoAndCategoryModels.resx">
+      <DependentUpon>201904212121105_AddPhotoAndCategoryModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
