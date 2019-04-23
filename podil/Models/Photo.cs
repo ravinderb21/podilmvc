@@ -14,5 +14,10 @@ namespace podil.Models
         public CategoryType CategoryType { get; set; }
 
         public byte CategoryTypeId { get; set; }
+
+        public ApplicationUser ApplicationUser { get; set; }
+
+        public string ApplicationUserId { get; set; }
+
     }
 }
