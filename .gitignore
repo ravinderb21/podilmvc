@@ -330,4 +330,4 @@ ASALocalRun/
 .mfractor/
 
 # Exclude Public folder
-Public/*
+*/Public/*
