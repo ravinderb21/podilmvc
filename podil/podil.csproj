@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201904212315365_SeedCategoryTypes.Designer.cs">
       <DependentUpon>201904212315365_SeedCategoryTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904240220517_AddDescriptionAndFileNameToPhoto.cs" />
+    <Compile Include="Migrations\201904240220517_AddDescriptionAndFileNameToPhoto.Designer.cs">
+      <DependentUpon>201904240220517_AddDescriptionAndFileNameToPhoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -345,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904212315365_SeedCategoryTypes.resx">
       <DependentUpon>201904212315365_SeedCategoryTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904240220517_AddDescriptionAndFileNameToPhoto.resx">
+      <DependentUpon>201904240220517_AddDescriptionAndFileNameToPhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

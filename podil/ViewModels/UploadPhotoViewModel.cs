@@ -11,5 +11,7 @@ namespace podil.ViewModels
         public Photo Photo { get; set; }
 
         public IEnumerable<CategoryType> CategoryTypes { get; set; }
+
+        public HttpPostedFileBase PhotoFile { get; set; }
     }
 }
