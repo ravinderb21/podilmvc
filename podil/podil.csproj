@@ -201,6 +201,14 @@
     <Compile Include="Migrations\201904240220517_AddDescriptionAndFileNameToPhoto.Designer.cs">
       <DependentUpon>201904240220517_AddDescriptionAndFileNameToPhoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904250017252_AddDataAnnotationsToPhotos.cs" />
+    <Compile Include="Migrations\201904250017252_AddDataAnnotationsToPhotos.Designer.cs">
+      <DependentUpon>201904250017252_AddDataAnnotationsToPhotos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904250021413_AddDisplayAnnotationToCategoryinPhtos.cs" />
+    <Compile Include="Migrations\201904250021413_AddDisplayAnnotationToCategoryinPhtos.Designer.cs">
+      <DependentUpon>201904250021413_AddDisplayAnnotationToCategoryinPhtos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -325,6 +333,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Photos\Index.cshtml" />
     <Content Include="Views\Photos\New.cshtml" />
+    <Content Include="Views\Photos\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -352,6 +361,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904240220517_AddDescriptionAndFileNameToPhoto.resx">
       <DependentUpon>201904240220517_AddDescriptionAndFileNameToPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904250017252_AddDataAnnotationsToPhotos.resx">
+      <DependentUpon>201904250017252_AddDataAnnotationsToPhotos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904250021413_AddDisplayAnnotationToCategoryinPhtos.resx">
+      <DependentUpon>201904250021413_AddDisplayAnnotationToCategoryinPhtos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

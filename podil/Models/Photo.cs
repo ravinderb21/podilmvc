@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,12 +10,16 @@ namespace podil.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         public string FileName { get; set; }
 
+        [Display(Name = "Category")]
         public CategoryType CategoryType { get; set; }
 
+        [Required]
+        [Display(Name = "Category Type")]
         public byte CategoryTypeId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }

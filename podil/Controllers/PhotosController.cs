@@ -42,6 +42,14 @@ namespace podil.Controllers
 
         public ActionResult Upload(Photo photo, HttpPostedFileBase photoFile)
         {
+            if(!ModelState.IsValid)
+            {
+                var viewModel = new UploadPhotoViewModel
+                {
+                    Photo = photo
+                };
+                return View(viewModel);
+            }
             string photoFileExtension = Path.GetExtension(photoFile.FileName);
             string photoFileName = Convert.ToString(Guid.NewGuid()) + photoFileExtension;
             string photoFullPath = Path.Combine(GetPhotoFolderPath().FullName, photoFileName);
@@ -53,7 +61,18 @@ namespace podil.Controllers
             Context.Photos.Add(photo);
             Context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Show", photo.Id);
+        }
+
+        public ActionResult Show(int id)
+        {
+            if (id != 0)
+            {
+                return HttpNotFound();
+            }
+            var photo = Context.Photos.First(p => p.Id == id);
+
+            return View("Show", photo);
         }
 
         private DirectoryInfo GetPhotoFolderPath()

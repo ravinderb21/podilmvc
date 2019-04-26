@@ -1,0 +1,21 @@
+﻿@model podil.Models.Photo
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <h2>@Model.Description</h2>
+
+            <div class="card box-shadow">
+                <img class="card-img" src="~/Public/Photos/@Model.FileName" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
