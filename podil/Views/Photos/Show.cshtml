@@ -2,16 +2,21 @@
 @{
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var PhotosFolderPath = System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosFolderPath"];
 }
 
 <div class="container">
-
     <div class="row">
         <div class="col">
-            <h2>@Model.Description</h2>
+            <h2>@User.Identity.Name</h2>
 
             <div class="card box-shadow">
-                <img class="card-img" src="~/Public/Photos/@Model.FileName" />
+                <img class="card-img" src="@Url.Content(PhotosFolderPath + Model.FileName)" />
+                <div class="card-body">
+                    <div class="card-text">
+                        @Model.CategoryType.Category
+                    </div>
+                </div>
             </div>
         </div>
 

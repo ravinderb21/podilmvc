@@ -2,6 +2,7 @@
 using podil.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -66,11 +67,11 @@ namespace podil.Controllers
 
         public ActionResult Show(int id)
         {
-            if (id != 0)
+            if (id == 0)
             {
                 return HttpNotFound();
             }
-            var photo = Context.Photos.First(p => p.Id == id);
+            var photo = Context.Photos.Include(p => p.CategoryType).First(p => p.Id == id);
 
             return View("Show", photo);
         }
@@ -79,7 +80,7 @@ namespace podil.Controllers
         {
             try
             {
-                return Directory.CreateDirectory(Server.MapPath(PhotosFolderPath));
+                return Directory.CreateDirectory(System.Web.Hosting.HostingEnvironment.MapPath(PhotosFolderPath));
             }
             catch
             {
