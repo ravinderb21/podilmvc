@@ -13,7 +13,7 @@
 }
 else
 {
-    <div class="album py-5 bg-light">
+    <div class="py-5 bg-light">
         <div class="container">
             <div class="row">
                 @foreach (var photo in Model)
@@ -31,7 +31,8 @@ else
                                         @Html.ActionLink("Edit", "Edit", "Photos", 
                                             new { id = photo.Id }, new { @class = "btn btn-sm btn-outline-info" })
                                     </div>
-                                    <small class="text-muted">9 mins</small>
+                                    <small class="text-muted">Date added:
+                                        @photo.DateAdded.ToString("dddd, MMMM dd, yyyy")</small>
                                 </div>
                             </div>
                         </div>

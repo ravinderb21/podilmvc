@@ -22,6 +22,8 @@ namespace podil.Models
         [Display(Name = "Category Type")]
         public byte CategoryTypeId { get; set; }
 
+        public DateTime DateAdded { get; set; }
+
         public ApplicationUser ApplicationUser { get; set; }
 
         public string ApplicationUserId { get; set; }
