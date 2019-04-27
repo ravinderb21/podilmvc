@@ -1,9 +1,44 @@
-﻿
+﻿@model IEnumerable<podil.Models.Photo>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var PhotosFolderPath = System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosFolderPath"];
 }
 
 <h2>My photos</h2>
 
+@if (Model.Count() < 1)
+{
+    <p>Start uploading photos.</p>
+}
+else
+{
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                @foreach (var photo in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="@Url.Content(PhotosFolderPath + photo.FileName)" 
+                                 alt="First Photo">
+                            <div class="card-body">
+                                <p class="card-text">@photo.CategoryType.Category</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        @Html.ActionLink("View", "Show", "Photos", 
+                                            new { id = photo.Id }, new { @class = "btn btn-sm btn-outline-info" })
+                                        @Html.ActionLink("Edit", "Edit", "Photos", 
+                                            new { id = photo.Id }, new { @class = "btn btn-sm btn-outline-info" })
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
 

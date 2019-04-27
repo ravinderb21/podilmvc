@@ -26,7 +26,13 @@ namespace podil.Controllers
         // GET: Photos
         public ActionResult Index()
         {
-            return View();
+            string appUserId = User.Identity.GetUserId();
+
+            var photos = Context.Photos
+                .Include(p => p.CategoryType)
+                .Where(p => p.ApplicationUserId.Contains(appUserId)).ToList();
+
+            return View(photos);
         }
 
         public ActionResult New()
@@ -71,7 +77,9 @@ namespace podil.Controllers
             {
                 return HttpNotFound();
             }
-            var photo = Context.Photos.Include(p => p.CategoryType).First(p => p.Id == id);
+            var photo = Context.Photos
+                .Include(p => p.CategoryType)
+                .First(p => p.Id == id);
 
             return View("Show", photo);
         }
