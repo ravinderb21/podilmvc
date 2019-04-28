@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201904271927572_AddDateAddedToPhotos.Designer.cs">
       <DependentUpon>201904271927572_AddDateAddedToPhotos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904281801109_AddStringLenghtToPhotoModel.cs" />
+    <Compile Include="Migrations\201904281801109_AddStringLenghtToPhotoModel.Designer.cs">
+      <DependentUpon>201904281801109_AddStringLenghtToPhotoModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -374,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904271927572_AddDateAddedToPhotos.resx">
       <DependentUpon>201904271927572_AddDateAddedToPhotos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904281801109_AddStringLenghtToPhotoModel.resx">
+      <DependentUpon>201904281801109_AddStringLenghtToPhotoModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

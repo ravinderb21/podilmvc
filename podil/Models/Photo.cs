@@ -11,8 +11,10 @@ namespace podil.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(255)]
         public string Description { get; set; }
 
+        [StringLength(255)]
         public string FileName { get; set; }
 
         [Display(Name = "Category")]
