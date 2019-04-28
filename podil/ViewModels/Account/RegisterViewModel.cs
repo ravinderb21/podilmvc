@@ -4,6 +4,15 @@ namespace podil.ViewModels.Account
 {
     public class RegisterViewModel
     {
+
+        [Required]
+        [StringLength(255)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        public string LastName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

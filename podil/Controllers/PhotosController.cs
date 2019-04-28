@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Web.Configuration;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace podil.Controllers
 {
@@ -27,13 +28,22 @@ namespace podil.Controllers
         // GET: Photos
         public ActionResult Index()
         {
-            string appUserId = User.Identity.GetUserId();
+            var applicationUser = HttpContext.GetOwinContext()
+                .GetUserManager<ApplicationUserManager>()
+                .FindById(User.Identity.GetUserId());
 
             var photos = Context.Photos
                 .Include(p => p.CategoryType)
-                .Where(p => p.ApplicationUserId.Contains(appUserId)).ToList();
+                .Where(p => p.ApplicationUserId.Contains(applicationUser.Id))
+                .ToList();
 
-            return View(photos);
+            var viewModel = new UserPhotosViewModel
+            {
+                ApplicationUser = applicationUser,
+                Photos = photos
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult New()
@@ -128,9 +138,12 @@ namespace podil.Controllers
             {
                 return HttpNotFound();
             }
+
+            var appUserId = User.Identity.GetUserId();
             var photo = Context.Photos
+                .Where(p => p.ApplicationUserId.Contains(appUserId))
                 .Include(p => p.CategoryType)
-                .First(p => p.Id == id);
+                .FirstOrDefault(p => p.Id == id);
 
             return View(photo);
         }

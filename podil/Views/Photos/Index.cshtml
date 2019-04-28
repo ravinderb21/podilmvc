@@ -1,23 +1,23 @@
-﻿@model IEnumerable<podil.Models.Photo>
+﻿@model podil.ViewModels.UserPhotosViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var PhotosFolderPath = System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosFolderPath"];
 }
 
-<h2>My photos</h2>
+<h2>Welcome, @Model.ApplicationUser.FirstName @Model.ApplicationUser.LastName</h2>
 @Html.ActionLink("Upload New", "New", "Photos", null, new { @class = "btn btn-primary" })
 
-@if (Model.Count() < 1)
+@if (Model.Photos.Count() < 1)
 {
-    <p>Start uploading photos.</p>
+    <p>You do not have any photos.</p>
 }
 else
 {
     <div class="py-5 bg-light">
         <div class="container">
             <div class="row">
-                @foreach (var photo in Model)
+                @foreach (var photo in Model.Photos)
                 {
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
