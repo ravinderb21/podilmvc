@@ -135,23 +135,6 @@ namespace podil.Controllers
             return View(photo);
         }
 
-        [HttpDelete]
-        public ActionResult Delete(int id)
-        {
-            if (id == 0)
-            {
-                return HttpNotFound();
-            }
-            var photo = Context.Photos.First(p => p.Id == id);
-
-            DeletePhotoFile(photo.FileName);
-
-            Context.Photos.Remove(photo);
-            Context.SaveChanges();
-
-            return View("Index");
-        }
-
         private void DeletePhotoFile(string fileName)
         { 
             string photoFullPath = Path.Combine(GetPhotoFolderPath().FullName, fileName);

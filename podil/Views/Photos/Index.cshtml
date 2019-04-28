@@ -6,11 +6,11 @@
 }
 
 <h2>My photos</h2>
+@Html.ActionLink("Upload New", "New", "Photos", null, new { @class = "btn btn-primary" })
 
 @if (Model.Count() < 1)
 {
     <p>Start uploading photos.</p>
-    @Html.ActionLink("Upload Now", "New", "Photos", null, new { @class = "btn btn-primary" })
 }
 else
 {
@@ -21,19 +21,23 @@ else
                 {
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="@Url.Content(PhotosFolderPath + photo.FileName)" 
-                                 alt="First Photo">
+                            <a href="@Url.Action("Show", "Photos", new { id = photo.Id })">
+                                <img class="card-img-top" src="@Url.Content(PhotosFolderPath + photo.FileName)"
+                                     alt="First Photo">
+                            </a>
                             <div class="card-body">
                                 <p class="card-text">@photo.CategoryType.Category</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        @Html.ActionLink("View", "Show", "Photos", 
+                                        @Html.ActionLink("Edit", "Edit", "Photos",
                                             new { id = photo.Id }, new { @class = "btn btn-sm btn-outline-info" })
-                                        @Html.ActionLink("Edit", "Edit", "Photos", 
-                                            new { id = photo.Id }, new { @class = "btn btn-sm btn-outline-info" })
+                                        @Html.ActionLink("Delete", "Delete", "Photos",
+                                            new { id = photo.Id }, new { @class = "btn btn-sm btn-outline-danger" })
                                     </div>
-                                    <small class="text-muted">Date added:
-                                        @photo.DateAdded.ToString("dddd, MMMM dd, yyyy")</small>
+                                    <small class="text-muted">
+                                        Date added:
+                                        @photo.DateAdded.ToString("dddd, MMMM dd, yyyy")
+                                    </small>
                                 </div>
                             </div>
                         </div>

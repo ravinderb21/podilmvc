@@ -8,13 +8,14 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2>@User.Identity.Name</h2>
+            <h2>@Model.CategoryType.Category</h2>
 
             <div class="card box-shadow">
                 <img class="card-img" src="@Url.Content(PhotosFolderPath + Model.FileName)" />
                 <div class="card-body">
+                    <h5 class="card-title">@Model.Description</h5>
                     <div class="card-text">
-                        @Model.CategoryType.Category
+                        Date added: @Model.DateAdded.ToString("MMMM dd, yyyy")
                     </div>
                 </div>
             </div>
