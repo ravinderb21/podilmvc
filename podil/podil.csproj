@@ -336,7 +336,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Photos\Index.cshtml" />
-    <Content Include="Views\Photos\New.cshtml" />
+    <Content Include="Views\Photos\UploadPhotoForm.cshtml" />
     <Content Include="Views\Photos\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>

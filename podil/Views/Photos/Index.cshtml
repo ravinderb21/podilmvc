@@ -10,6 +10,7 @@
 @if (Model.Count() < 1)
 {
     <p>Start uploading photos.</p>
+    @Html.ActionLink("Upload Now", "New", "Photos", null, new { @class = "btn btn-primary" })
 }
 else
 {

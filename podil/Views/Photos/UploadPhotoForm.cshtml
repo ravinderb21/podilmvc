@@ -5,7 +5,7 @@
 }
 
 <h2>Upload Photo</h2>
-@using (Html.BeginForm("Upload", "Photos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Save", "Photos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true, "Please correct highlighted errors.")
 
@@ -17,17 +17,18 @@
     </div>
 
     <div clss="form-group">
-        @Html.LabelFor(p => p.Photo.Description)
-        @Html.TextBoxFor(p => p.Photo.Description, new { @class = "form-control" })
-        @Html.ValidationMessageFor(p => p.Photo.Description)
+        @Html.LabelFor(p => p.Description)
+        @Html.TextBoxFor(p => p.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Description)
     </div>
     <div clss="form-group">
-        @Html.LabelFor(p => p.Photo.CategoryType)
-        @Html.DropDownListFor(p => p.Photo.CategoryTypeId,
+        @Html.LabelFor(p => p.CategoryTypeId)
+        @Html.DropDownListFor(p => p.CategoryTypeId,
             new SelectList(Model.CategoryTypes, "Id", "Category"), "Please select a category", new { @class = "form-control" })
-        @Html.ValidationMessageFor(p => p.Photo.CategoryTypeId)
+        @Html.ValidationMessageFor(p => p.CategoryTypeId)
     </div>
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(p => p.Id)
     <input type="submit" class="btn btn-primary" value="Upload" />
 }
 

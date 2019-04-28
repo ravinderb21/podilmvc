@@ -23,6 +23,7 @@ namespace podil.Controllers
         {
             Context = new ApplicationDbContext();
         }
+
         // GET: Photos
         public ActionResult Index()
         {
@@ -44,31 +45,81 @@ namespace podil.Controllers
                 CategoryTypes = categoryTypes
             };
 
-            return View(uploadPhotoViewModel);
+            return View("UploadPhotoForm", uploadPhotoViewModel);
         }
 
-        public ActionResult Upload(Photo photo, HttpPostedFileBase photoFile)
+        public ActionResult Edit(int id)
+        {
+            if (id == 0)
+            {
+                return HttpNotFound();
+            }
+
+            var categoryTypes = Context.CategoryTypes.ToList();
+            var photo = Context.Photos
+                .Include(p => p.CategoryType)
+                .FirstOrDefault(p => p.Id == id);
+
+            var viewModel = new UploadPhotoViewModel(photo)
+            {
+                CategoryTypes = categoryTypes
+            };
+
+            return View("UploadPhotoForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Photo photo, HttpPostedFileBase photoFile)
         {
             if(!ModelState.IsValid)
             {
-                var viewModel = new UploadPhotoViewModel
+                var categoryTypes = Context.CategoryTypes.ToList();
+
+                var viewModel = new UploadPhotoViewModel(photo)
                 {
-                    Photo = photo
+                    CategoryTypes = categoryTypes
                 };
                 return View(viewModel);
             }
-            string photoFileExtension = Path.GetExtension(photoFile.FileName);
-            string photoFileName = Convert.ToString(Guid.NewGuid()) + photoFileExtension;
-            string photoFullPath = Path.Combine(GetPhotoFolderPath().FullName, photoFileName);
-            photoFile.SaveAs(photoFullPath);
 
-            photo.ApplicationUserId = User.Identity.GetUserId();
-            photo.FileName = photoFileName;
+            string photoFileName = string.Empty;
+            if (photoFile != null)
+            {
+                // Delete old photo
+                if (photo.Id != 0)
+                {
+                    DeletePhotoFile(photo.FileName);
+                }
 
-            Context.Photos.Add(photo);
+                // Save the new photo
+                string photoFileExtension = Path.GetExtension(photoFile.FileName);
+                photoFileName = Convert.ToString(Guid.NewGuid()) + photoFileExtension;
+                photo.FileName = photoFileName;
+
+                string photoFullPath = Path.Combine(GetPhotoFolderPath().FullName, photoFileName);
+                photoFile.SaveAs(photoFullPath);
+            }
+
+            if (photo.Id != 0)
+            {
+                var photoInDb = Context.Photos.First(p => p.Id == photo.Id);
+                photoInDb.CategoryTypeId = photo.CategoryTypeId;
+                photoInDb.Description = photo.Description;
+                if (!string.IsNullOrEmpty(photoFileName))
+                {
+                    photoInDb.FileName = photoFileName;
+                }
+                photo = photoInDb;
+            }
+            else
+            {
+                photo.ApplicationUserId = User.Identity.GetUserId();
+                photo.DateAdded = DateTime.Now;
+                Context.Photos.Add(photo);
+            }
             Context.SaveChanges();
 
-            return RedirectToAction("Show", photo.Id);
+            return RedirectToAction("Show", new { id = photo.Id });
         }
 
         public ActionResult Show(int id)
@@ -81,7 +132,33 @@ namespace podil.Controllers
                 .Include(p => p.CategoryType)
                 .First(p => p.Id == id);
 
-            return View("Show", photo);
+            return View(photo);
+        }
+
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            if (id == 0)
+            {
+                return HttpNotFound();
+            }
+            var photo = Context.Photos.First(p => p.Id == id);
+
+            DeletePhotoFile(photo.FileName);
+
+            Context.Photos.Remove(photo);
+            Context.SaveChanges();
+
+            return View("Index");
+        }
+
+        private void DeletePhotoFile(string fileName)
+        { 
+            string photoFullPath = Path.Combine(GetPhotoFolderPath().FullName, fileName);
+            if (System.IO.File.Exists(photoFullPath))
+            {
+                System.IO.File.Delete(photoFullPath);
+            }
         }
 
         private DirectoryInfo GetPhotoFolderPath()
