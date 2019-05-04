@@ -9,7 +9,7 @@ namespace podil.Migrations
         {
             AddColumn("dbo.Photos", "Description", c => c.String());
             AddColumn("dbo.Photos", "FileName", c => c.String());
-            DropColumn("dbo.Photos", "PhotoUrl");
+            //DropColumn("dbo.Photos", "PhotoUrl");
         }
         
         public override void Down()
