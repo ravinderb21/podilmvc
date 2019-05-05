@@ -29,6 +29,7 @@
     </div>
     @Html.AntiForgeryToken()
     @Html.HiddenFor(p => p.Id)
+    @Html.HiddenFor(p => p.FileName)
     <input type="submit" class="btn btn-primary" value="Upload" />
 }
 

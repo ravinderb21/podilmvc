@@ -96,7 +96,7 @@ namespace podil.Controllers
             if (photoFile != null)
             {
                 // Delete old photo
-                if (photo.Id != 0)
+                if (photo.Id != 0 && photo.FileName != null)
                 {
                     DeletePhotoFile(photo.FileName);
                 }
