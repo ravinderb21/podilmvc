@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var PhotosFolderPath = System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosFolderPath"];
+    var photosFolderPath = podil.Helpers.FileHandler.PhotosFolderPath;
 }
 
 <h2>Welcome, @Model.ApplicationUser.FirstName @Model.ApplicationUser.LastName</h2>
@@ -22,7 +22,7 @@ else
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
                             <a href="@Url.Action("Show", "Photos", new { id = photo.Id })">
-                                <img class="card-img-top" src="@Url.Content(PhotosFolderPath + photo.FileName)"
+                                <img class="card-img-top" src="@Url.Content(photosFolderPath + photo.FileName)"
                                      alt="First Photo">
                             </a>
                             <div class="card-body">

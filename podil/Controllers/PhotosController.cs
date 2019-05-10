@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Web.Configuration;
 using Microsoft.AspNet.Identity.Owin;
+using podil.Helpers;
 
 namespace podil.Controllers
 {
@@ -17,8 +18,6 @@ namespace podil.Controllers
     public class PhotosController : Controller
     {
         private readonly ApplicationDbContext Context;
-
-        private readonly string PhotosFolderPath = WebConfigurationManager.AppSettings["PhotosFolderPath"];
 
         public PhotosController()
         {
@@ -96,9 +95,9 @@ namespace podil.Controllers
             if (photoFile != null)
             {
                 // Delete old photo
-                if (photo.Id != 0 && photo.FileName != null)
+                if (photo.FileName != null)
                 {
-                    DeletePhotoFile(photo.FileName);
+                    FileHandler.DeletePhotoFile(photo.FileName);
                 }
 
                 // Save the new photo
@@ -106,7 +105,7 @@ namespace podil.Controllers
                 photoFileName = Convert.ToString(Guid.NewGuid()) + photoFileExtension;
                 photo.FileName = photoFileName;
 
-                string photoFullPath = Path.Combine(GetPhotoFolderPath().FullName, photoFileName);
+                string photoFullPath = Path.Combine(FileHandler.GetPhotoFolderPath().FullName, photoFileName);
                 photoFile.SaveAs(photoFullPath);
             }
 
@@ -148,25 +147,5 @@ namespace podil.Controllers
             return View(photo);
         }
 
-        private void DeletePhotoFile(string fileName)
-        { 
-            string photoFullPath = Path.Combine(GetPhotoFolderPath().FullName, fileName);
-            if (System.IO.File.Exists(photoFullPath))
-            {
-                System.IO.File.Delete(photoFullPath);
-            }
-        }
-
-        private DirectoryInfo GetPhotoFolderPath()
-        {
-            try
-            {
-                return Directory.CreateDirectory(System.Web.Hosting.HostingEnvironment.MapPath(PhotosFolderPath));
-            }
-            catch
-            {
-                throw;
-            }
-        }
     }
 }
